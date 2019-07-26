@@ -1,4 +1,4 @@
-@import UIKit;
+//@import UIKit;
 #import <LSApplicationWorkspace.h>
 
 
@@ -8,7 +8,7 @@ NSString* absPathForFileAtPath(NSString* spath);
 
 void pUsage(){
 	
-	printf("ofilza opens given path in Filza \n usage: ofilza pathToOpen \n ");
+	printf("ofilza opens given path in Filza \n usage: ofilza path \n ");
 	
 	
 }
@@ -43,8 +43,9 @@ int main(int argc, char **argv, char **envp) {
 			
 		}
 		
+		spath = [spath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
 		
-		NSString *strpath = [NSString stringWithFormat: @"filza://%@",spath];
+		NSString *strpath = [NSString stringWithFormat: @"filza://view/%@",spath];
 		
 		NSURL *urlp = [NSURL URLWithString:strpath];
 		
@@ -64,7 +65,6 @@ int main(int argc, char **argv, char **envp) {
 	return 0;
 }
 
-// vim:ft=objc
 
 NSString* absPathForFileAtPath(NSString* spath) {
 	
